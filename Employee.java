@@ -6,6 +6,7 @@ public class Employee {
 	double salary;
 	int workHours;
 	int hireYear;
+
 	// static driverin içinde direkt counteri çagirmamiza yardimci oldu. static
 	// kalkinca degiskenler gorunmuyor mainin içinde.
 	static int counter = 0;
@@ -22,46 +23,50 @@ public class Employee {
 
 	}
 
-	// ister 3, ister 5 tane özellik girebilmek için böyle farkli bir sey daha yaptik.
-	// Bu constructor üsttekinden farkli.
-	// bu sekilde iki costuructor olmus oldu.
+	Employee(String name, double salary, int workHours) {
 
-	Employee(double salary, int workHours, int hireYear) {
-
+		this.name = name;
 		this.salary = salary;
 		this.workHours = workHours;
-		this.hireYear = hireYear;
+
+		counter++;
 
 	}
 
+	// Bu method iscinin vergiye girip girmedigini hesapli
 	public double tax() {
-		if (salary >= 1000) {
+		if (salary >= 2500) {
 			double tax = salary * 0.03;
 			return tax;
 		}
-		
+
 		return 0.0;
 	}
 
+	// Bu method da haftalik calisma saati verilen iscinin ne kadar fazla calistigi
+	// ve ne kadar bonus almasi gerektigi hesaplanmaktadir.
 	public double bonus() {
 		int extra = workHours - 40;
 		if (extra > 0) {
 			double bonus = extra * 30;
-			return bonus;
+			return bonus * 4;
 		}
 		return 0.0;
 	}
 
-	// bu method 
+	// bu method da maasin artisi hesaplanmaktadir.
 	public double raiseSalary() {
-		int experience = 2020 - hireYear;
-		double RaiseRatio;
-		if (experience > 19) {
-			return RaiseRatio = salary * 0.15;
-		} else if (experience < 10) {
-			return RaiseRatio = salary * 0.05;
+		if (hireYear > 0) {
+			int experience = 2020 - hireYear;
+			double RaiseRatio;
+			if (experience > 19) {
+				return RaiseRatio = salary * 0.15;
+			} else if (experience < 10) {
+				return RaiseRatio = salary * 0.05;
+			}
+			return 0.10;
 		}
-		return 0.10;
+		return 0;
 	}
 
 	public String toString() {
